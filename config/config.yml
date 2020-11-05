@@ -1,0 +1,3 @@
+# app/config/config.yml
+twig:
+    exception_controller:  AppBundle:Exception:showException

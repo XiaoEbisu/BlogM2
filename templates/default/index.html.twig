@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MySymfonyBlog{% endblock %}
+
+{% block body %}
+    <section id="welcome">
+    <div class="welcome-container" data-aos="zoom-in" data-aos-delay="100">
+      <h1>Welcome to our symfony blog</h1>
+      <h2>This is our symfony blog</h2>
+      <a href="{{ path('post_index') }}" class="btn-get-started">Get Started</a>
+    </div>
+  </section>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post{% endblock %}
+
+{% block body %}
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+        <h1 class="mt-4">{{ post.title }}</h1>
+
+        <hr>
+
+            <!-- Date/Time -->
+            <p>Posted on {{post.published | date("d/m/Y", "Europe/Paris")}}</p>
+
+            <hr>
+
+            <!-- Preview Image -->
+            <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+            
+            <!-- Post Content -->
+            <p> {{ post.content }}</p>
+
+    
+        <div class="row">
+            <a class="btn btn-primary" href="{{ path('post_index') }}" role="button"> <i class="fas fa-arrow-left"></i> Back to List </a>
+            {% if is_granted("ROLE_USER") == true %}
+                <a class="btn btn-primary" href="{{ path('post_edit', { ('slug') : post.urlAlias}) }}" role="button"><i class="fas fa-edit"></i> Edit</a>
+                {{ include('post/_delete_form.html.twig') }}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
