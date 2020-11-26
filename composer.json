@@ -11,7 +11,6 @@
         "doctrine/doctrine-bundle": "^2.1",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
-        "doctrine/doctrine-fixtures-bundle": "^3.3",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^5.6",
         "symfony/apache-pack": "^1.0",
@@ -45,10 +44,10 @@
         "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "symfony/browser-kit": "^5.1",
         "symfony/css-selector": "^5.1",
         "symfony/debug-bundle": "^5.1",
-        
         "symfony/phpunit-bridge": "^5.1",
         "symfony/stopwatch": "^5.1",
         "symfony/var-dumper": "^5.1",
