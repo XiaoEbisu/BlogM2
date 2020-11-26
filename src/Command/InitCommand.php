@@ -95,7 +95,7 @@ class InitCommand extends Command
     //Loading Fixtures
     $options = [
       'command' => 'doctrine:fixtures:load',
-      "--no-interaction" => true,
+      "--no-interaction --env=PROD" => true,
     ];
     $application->run(new ArrayInput($options));
 
