@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\DataFixtures;
 
 use App\Entity\User;
@@ -9,23 +9,23 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 
 class UserFixtures extends Fixture
 {
-    private $encoder;
+  private $encoder;
 
-    public function __construct(UserPasswordEncoderInterface $encoder)
-    {
-        $this->encoder = $encoder;
-    }
+  public function __construct(UserPasswordEncoderInterface $encoder)
+  {
+    $this->encoder = $encoder;
+  }
 
-    public function load(ObjectManager $manager)
-    {
-        $user = new User();
-        $user->setEmail('admin@blog.com');
-        $user->setPassword($this->encoder->encodePassword($user, 'some'));
-        $user->setRoles(["ROLE_ADMIN"]);
-        $manager->persist($user);
+  public function load(ObjectManager $manager)
+  {
+    $user = new User();
+    $user->setEmail('admin@blog.com');
+    $user->setPassword($this->encoder->encodePassword($user, 'some'));
+    $user->setRoles(['ROLE_ADMIN']);
+    $manager->persist($user);
 
-        $manager->flush();
-    }
+    $manager->flush();
+  }
 }
 
 ?>
