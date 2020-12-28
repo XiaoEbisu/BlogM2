@@ -1,4 +1,7 @@
 {
+    "behat/transliterator": {
+        "version": "v1.3.0"
+    },
     "cocur/slugify": {
         "version": "v4.0.0"
     },
@@ -98,6 +101,9 @@
     },
     "egulias/email-validator": {
         "version": "2.1.22"
+    },
+    "gedmo/doctrine-extensions": {
+        "version": "v3.0.0"
     },
     "monolog/monolog": {
         "version": "2.1.1"
