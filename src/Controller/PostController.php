@@ -13,15 +13,16 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
 /**
- * @Route("/post")
+ * @Route("/")
  */
 class PostController extends AbstractController
 {
     /**
-     * @Route("/", name="post_index", methods={"GET"})
+     * @Route("", name="post_index", methods={"GET"})
      */
     public function index(PostRepository $postRepository): Response
-    {
+    {   
+
         return $this->render('post/index.html.twig', [
             'posts' => $postRepository->findAll(),
         ]);
@@ -31,7 +32,7 @@ class PostController extends AbstractController
      * 
      * @Security("is_granted('ROLE_USER')")
      * 
-     * @Route("/new", name="post_new", methods={"GET","POST"})
+     * @Route("post/new", name="post_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -57,7 +58,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="post_show", methods={"GET"})
+     * @Route("post/{slug}", name="post_show", methods={"GET"})
      */
     public function show(string $slug): Response
     {   
@@ -73,7 +74,7 @@ class PostController extends AbstractController
     /**
      * @Security("is_granted('ROLE_USER')")
      * 
-     * @Route("/{slug}/edit", name="post_edit", methods={"GET","POST"})
+     * @Route("post/{slug}/edit", name="post_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, string $slug): Response
     {
@@ -103,7 +104,7 @@ class PostController extends AbstractController
     /**
      * @Security("is_granted('ROLE_USER')")
      * 
-     * @Route("/{id}", name="post_delete", methods={"DELETE"})
+     * @Route("post/{id}", name="post_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Post $post): Response
     {

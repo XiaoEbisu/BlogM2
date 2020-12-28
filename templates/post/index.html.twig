@@ -11,21 +11,21 @@
                     {% for post in posts %}
                         <!-- Blog Post -->
                         <div class="card mb-4">
-                            <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+                            {# <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> #}
                             <div class="card-body">
                                 <a href="{{ path('post_show', {('slug') : post.urlAlias} )}}"><h2 class="card-title">{{post.title}}</h2></a>
                                 {% set paragraphs = post.content|split('\n') %}
                                 {% set firstParagraph = paragraphs|first ~ '\n' %}
                                 <p class="card-text">{{ firstParagraph|raw }}</p>
-                                <a href="{{ path('post_show', { ('slug') : post.urlAlias} )}}" class="btn btn-primary">Read More <i class="fas fa-arrow-right"></i></a>
+                                <a href="{{ path('post_show', { ('slug') : post.urlAlias} )}}" class="btn btn-primary">Voir plus<i class="fas fa-arrow-right"></i></a>
                             </div>
                             <div class="card-footer text-muted">
-                                Posted on {{post.published | date("d/m/Y", "Europe/Paris")}}
+                                Ajouté le {{post.published | date("d/m/Y", "Europe/Paris")}}
                             </div>
                         </div>
                     {% else %}
                         <tr>
-                            <td colspan="6">no records found</td>
+                            <td colspan="6">Pas d'articles encore</td>
                         </tr>
                     {% endfor %}
                     </tbody>
