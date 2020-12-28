@@ -88,6 +88,7 @@ class PostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             //$slugger = new AsciiSlugger();
             //$post->setUrlAlias($slugger->slug($post->getTitle()));
+            $post->setPublished(new \DateTime());
             $this->getDoctrine()->getManager()->flush();
             
             return $this->redirectToRoute('post_show', [
