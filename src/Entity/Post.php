@@ -35,7 +35,8 @@ class Post
     private $content;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"title", "id"}, style="camel", separator="-", updatable=false, unique=true)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $url_alias;
 
