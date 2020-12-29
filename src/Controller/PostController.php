@@ -63,7 +63,8 @@ class PostController extends AbstractController
     {   
         $post = $this->getDoctrine()->getRepository(Post::class)->findOneBy(['url_alias' => $slug]);
         if(!$post){
-            return $this->render('exception/error404.html.twig');
+            //return $this->render('exception/error404.html.twig');
+            throw $this->createNotFoundException('Pas d\'article correspond à cette url.');
         }
         return $this->render('post/show.html.twig', [
             'post' => $post,
