@@ -29,6 +29,7 @@ class AppFixtures extends Fixture
             
             Vivamus a ipsum eget massa sagittis facilisis eu quis quam. In commodo vitae dui congue maximus. Sed et posuere odio. Praesent imperdiet at nisi ut auctor. Quisque bibendum posuere molestie. In elit purus, egestas in purus a, mollis pharetra nulla. Praesent gravida semper massa sed iaculis. Phasellus eget est odio. Maecenas a felis pharetra mi laoreet posuere nec et ipsum. Praesent libero ante, elementum ut porta sed, lobortis quis nisl. Aenean in ex eget odio commodo dapibus vel lacinia dui. Ut ipsum tellus, hendrerit eget nibh ac, posuere ultricies odio. Maecenas cursus nisi a nulla iaculis congue. Pellentesque vitae dictum nibh.");
             $post->setPublished((new \DateTime())->sub(new DateInterval('P'.$i.'D')));
+            $post->setIllustration("");
             $manager->persist($post);
         }
 
