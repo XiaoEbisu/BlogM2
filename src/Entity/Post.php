@@ -42,6 +42,9 @@ class Post
     private $url_alias;
 
     /**
+     * @var \DateTime $created
+     * 
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $published;
