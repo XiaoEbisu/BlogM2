@@ -1,37 +1,68 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Sếp péo's Blog
+{% endblock %}
 
 {% block body %}
-    
 
-            <!-- Blog Entries Column -->
-            <div class="col-md-8">
+	<section class="py-5 text-center container">
+		<div class="row py-lg-5">
+			<div class="col-lg-6 col-md-8 mx-auto">
+				<h1 class="fw-light">Album example</h1>
+				<p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+				<p>
+					<a href="#" class="btn btn-primary my-2">Main call to action</a>
+					<a href="#" class="btn btn-secondary my-2">Secondary action</a>
+				</p>
+			</div>
+		</div>
+	</section>
 
-                    {% for post in posts %}
-                        <!-- Blog Post -->
-                        <div class="card mb-4">
-                            {# <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> #}
-                            <div class="card-body">
-                                <a href="{{ path('post_show', {('slug') : post.urlAlias} )}}"><h2 class="card-title">{{post.title}}</h2></a>
-                                {% set paragraphs = post.content|split('\n') %}
-                                {% set firstParagraph = paragraphs|first ~ '\n' %}
-                                <p class="card-text">{{ firstParagraph|raw }}</p>
-                                <a href="{{ path('post_show', { ('slug') : post.urlAlias} )}}" class="btn btn-primary">Voir plus<i class="fas fa-arrow-right"></i></a>
-                            </div>
-                            <div class="card-footer text-muted">
-                                Ajouté le {{post.published | date("d/m/Y", "Europe/Paris")}}
-                            </div>
-                        </div>
-                    {% else %}
-                        <tr>
-                            <td colspan="6">Pas d'articles encore</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+	<div class="album py-5 bg-light">
+		<div class="container">
 
-            
-        
+			{% if (posts|length == 0) %}
+				<h4>Pas de articles</h4>
+			{% else %}
+
+				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+					{% for post in posts %}
+
+						<div class="col">
+							<div class="card shadow-sm">
+								<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveaspectratio="xMidYMid slice" focusable="false">
+									<title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+								</svg>
+
+								<div class="card-body ">
+									<a href="{{ path('post_show', {('slug') : post.urlAlias} )}}">
+										<h4>{{post.title}}</h4>
+									</a>
+									<p class="card-text content-too-long">{{ post.content }}</p>
+									<div class="d-flex justify-content-between align-items-center">
+										<div class="btn-group">
+											<button type="button" class="btn btn-sm btn-outline-secondary">
+												<a href="{{ path('post_show', {('slug') : post.urlAlias} )}}">Voir plus</a>
+											</button>
+
+                                            {% if is_granted("ROLE_USER") %}
+											<button type="button" class="btn btn-sm btn-outline-secondary">
+                                            <a href="{{ path('post_edit', { ('slug') : post.urlAlias}) }}">Edit</a></button>
+                                            {% endif %}
+
+										</div>
+										<small class="text-muted">{{post.published | date("d/m/Y", "Europe/Paris")}}</small>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					{% endfor %}
+
+				</div>
+			{% endif %}
+		</div>
+	</div>
+
 {% endblock %}
