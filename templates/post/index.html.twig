@@ -47,45 +47,45 @@
 				</a>
 			</li>
 		</ul>
-	<div class="container">
+		<div class="container">
 
-		{% if (posts|length == 0) %}
-			<h4>Pas de articles</h4>
-		{% else %}
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-				{% for post in posts %}
-					<div class="col">
-						<div class="card shadow-sm">
-							<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveaspectratio="xMidYMid slice" focusable="false">
-								<title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-							</svg>
+			{% if (posts|length == 0) %}
+				<h4>Pas de articles</h4>
+			{% else %}
+				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+					{% for post in posts %}
+						<div class="col">
+							<div class="card shadow-sm">
+								<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveaspectratio="xMidYMid slice" focusable="false">
+									<title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+								</svg>
 
-							<div class="card-body ">
-								<a href="{{ path('post_show', {('slug') : post.urlAlias} )}}">
-									<h4>{{post.title}}</h4>
-								</a>
-								<p class="card-text content-too-long">{{ post.content }}</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<button type="button" class="btn btn-sm btn-outline-secondary">
-											<a href="{{ path('post_show', {('slug') : post.urlAlias} )}}">Voir plus</a>
-										</button>
-
-										{% if is_granted("ROLE_USER") %}
+								<div class="card-body ">
+									<a href="{{ path('post_show', {('slug') : post.urlAlias} )}}">
+										<h4>{{post.title}}</h4>
+									</a>
+									<p class="card-text content-too-long">{{ post.content }}</p>
+									<div class="d-flex justify-content-between align-items-center">
+										<div class="btn-group">
 											<button type="button" class="btn btn-sm btn-outline-secondary">
-												<a href="{{ path('post_edit', { ('slug') : post.urlAlias}) }}">Edit</a>
+												<a href="{{ path('post_show', {('slug') : post.urlAlias} )}}">Voir plus</a>
 											</button>
-										{% endif %}
 
+											{% if is_granted("ROLE_USER") %}
+												<button type="button" class="btn btn-sm btn-outline-secondary">
+													<a href="{{ path('post_edit', { ('slug') : post.urlAlias}) }}">Edit</a>
+												</button>
+											{% endif %}
+
+										</div>
+										<small class="text-muted">{{post.published | date("d/m/Y", "Europe/Paris")}}</small>
 									</div>
-									<small class="text-muted">{{post.published | date("d/m/Y", "Europe/Paris")}}</small>
 								</div>
 							</div>
 						</div>
-					</div>
-				{% endfor %}
-			</div>
-		{% endif %}
+					{% endfor %}
+				</div>
+			{% endif %}
 		</div>
 	</div>
 

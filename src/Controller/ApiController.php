@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ApiController extends AbstractController
 {
     /**
-     * @Route("/", name="api_index")
+     * @Route("/posts", name="api_index")
      */
     public function index(PostRepository $postRepository): Response
     {   
@@ -27,6 +27,27 @@ class ApiController extends AbstractController
         }
 
         return new JsonResponse(['post' => $serializedPosts, 'items' => count($serializedPosts)]);
+    }
+
+    /**
+     * 
+     * @Route("/post/{slug}", name="api_show", methods={"GET"})
+     */
+    public function show(PostRepository $postRepository, string $slug): Response
+    {
+        $post = $postRepository->findOneBy(['url_alias' => $slug]);
+        
+        return new JsonResponse(['post' => $this->serializePost($post)]);
+    }
+
+    /**
+     * 
+     * @Route("/weather", name="api_weather", methods={"GET"})
+     */
+    public function weather(): Response
+    {
+
+        return $this->render("api/weather.html.twig");
     }
 
     private function serializePost(Post $post){
