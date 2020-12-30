@@ -18,13 +18,25 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 class PostController extends AbstractController
 {
     /**
-     * @Route("", name="post_index", methods={"GET"})
+     * @Route("", defaults={"page"="1"})
+     * @Route("/{page<\d+>?}", name="post_index", methods={"GET"})
      */
-    public function index(PostRepository $postRepository): Response
-    {   
+    public function index(PostRepository $postRepository, $page): Response
+    {
+        //définir le nombre d'éléments par page
+        $limit = 6;
+        
+        //récupérer les posts de la page
+        $posts = $postRepository->getPaginatedPosts($page, $limit);
+
+        //récupérer le nombre total de posts
+        $total = $postRepository->getTotalPosts();
 
         return $this->render('post/index.html.twig', [
-            'posts' => $postRepository->findAll(),
+            'posts' => $posts,
+            'total' => $total,
+            'limit' => $limit,
+            'page' => $page
         ]);
     }
 
@@ -60,9 +72,9 @@ class PostController extends AbstractController
      * @Route("post/{slug}", name="post_show", methods={"GET"})
      */
     public function show(string $slug): Response
-    {   
+    {
         $post = $this->getDoctrine()->getRepository(Post::class)->findOneBy(['url_alias' => $slug]);
-        if(!$post){
+        if (!$post) {
             //return $this->render('exception/error404.html.twig');
             throw $this->createNotFoundException('Pas d\'article correspond à cette url.');
         }
@@ -79,7 +91,7 @@ class PostController extends AbstractController
     public function edit(Request $request, string $slug): Response
     {
         $post = $this->getDoctrine()->getRepository(Post::class)->findOneBy(['url_alias' => $slug]);
-        if(!$post){
+        if (!$post) {
             return $this->render('exception/error404.html.twig');
         }
         $form = $this->createForm(PostType::class, $post);
@@ -90,7 +102,7 @@ class PostController extends AbstractController
             //$post->setUrlAlias($slugger->slug($post->getTitle()));
             //$post->setPublished(new \DateTime());
             $this->getDoctrine()->getManager()->flush();
-            
+
             return $this->redirectToRoute('post_show', [
                 'slug' => $post->getUrlAlias()
             ]);
@@ -109,7 +121,7 @@ class PostController extends AbstractController
      */
     public function delete(Request $request, Post $post): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$post->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $post->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($post);
             $entityManager->flush();

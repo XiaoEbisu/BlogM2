@@ -6,7 +6,7 @@
 {% block body %}
 
 	<section class="py-5 text-center container" style="background: url('assets/img/cover.jpg'); background-size: cover; background-position: center top;">
-		<div class="row py-lg-5" >
+		<div class="row py-lg-5">
 			<div class="col-lg-6 col-md-8 mx-auto">
 				<h1 class="fw-light">Hi there !</h1>
 				<p class="lead">People who love to eat are always the best people.</p>
@@ -19,6 +19,36 @@
 	</section>
 
 	<div class="album py-5 bg-light">
+		<nav aria-label="Page navigation example">
+			<ul class="pagination">
+				<li class="{{ (page == 1) ? 'disabled' : ''}}">
+					<a href="{{ path("post_index", { 'page' : 1 }) }}">
+						<i class="fas fa-angle-double-left"></i>
+					</a>
+				</li>
+				<li class="{{ (page == 1) ? 'disabled' : ''}}">
+					<a href="{{ (page > 1) ? path("post_index", { 'page' : (page - 1) }) : '' }}">
+						<i class="fas fa-chevron-left"></i>
+					</a>
+				</li>
+				{% set pages = ((total / limit)|round(0, 'ceil')) %}
+				{% for item in 1..pages %}
+					<li class="page-item">
+						<a href="{{ path("post_index", { 'page' : item }) }}">{{item}}</a>
+					</li>
+				{% endfor %}
+				<li class="{{ (page == pages) ? 'disabled' : ''}}">
+					<a href="{{ (page < pages) ? path("post_index", { 'page' : (page + 1) }) : '' }}">
+						<i class="fas fa-chevron-right"></i>
+					</a>
+				</li>
+				<li class="{{ (page == pages) ? 'disabled' : ''}}">
+					<a href="{{path("post_index", { 'page' : pages }) }}">
+						<i class="fas fa-angle-double-right"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
 		<div class="container">
 
 			{% if (posts|length == 0) %}
@@ -46,10 +76,11 @@
 												<a href="{{ path('post_show', {('slug') : post.urlAlias} )}}">Voir plus</a>
 											</button>
 
-                                            {% if is_granted("ROLE_USER") %}
-											<button type="button" class="btn btn-sm btn-outline-secondary">
-                                            <a href="{{ path('post_edit', { ('slug') : post.urlAlias}) }}">Edit</a></button>
-                                            {% endif %}
+											{% if is_granted("ROLE_USER") %}
+												<button type="button" class="btn btn-sm btn-outline-secondary">
+													<a href="{{ path('post_edit', { ('slug') : post.urlAlias}) }}">Edit</a>
+												</button>
+											{% endif %}
 
 										</div>
 										<small class="text-muted">{{post.published | date("d/m/Y", "Europe/Paris")}}</small>

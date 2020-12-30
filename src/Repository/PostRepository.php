@@ -24,9 +24,33 @@ class PostRepository extends ServiceEntityRepository
    * @return Post[]
    */
   public function findAll()
-    {
-        return $this->findBy(array(), array('published' => 'DESC'));
-    }
+  {
+    return $this->findBy(array(), array('published' => 'DESC'));
+  }
+
+  /**
+   * Returns all Posts per page
+   * @return void
+   */
+  public function getPaginatedPosts($page, $limit)
+  {
+    $query = $this->createQueryBuilder('p')
+      ->orderBy('p.published')
+      ->setFirstResult(($page * $limit) - $limit)
+      ->setMaxResults($limit);
+    return $query->getQuery()->getResult();
+  }
+
+  /**
+   * Return total de posts
+   * @return void
+   */
+  public function getTotalPosts()
+  {
+    $query = $this->createQueryBuilder('p')
+      ->select('COUNT(p)');
+    return $query->getQuery()->getSingleScalarResult();
+  }
 
   // /**
   //  * @return Post[] Returns an array of Post objects
