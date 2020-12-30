@@ -48,6 +48,7 @@ class PostController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $title = "Ajouter un article";
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
@@ -63,6 +64,7 @@ class PostController extends AbstractController
         }
 
         return $this->render('post/new.html.twig', [
+            'title' => $title,
             'post' => $post,
             'form' => $form->createView(),
         ]);
@@ -91,6 +93,8 @@ class PostController extends AbstractController
     public function edit(PostRepository $postRepository, Request $request, string $slug): Response
     {
         $post = $postRepository->findOneBy(['url_alias' => $slug]);
+        $title = "Modifier l'article";
+        
         if (!$post) {
             return $this->render('exception/error404.html.twig');
         }
@@ -108,7 +112,8 @@ class PostController extends AbstractController
             ]);
         }
 
-        return $this->render('post/edit.html.twig', [
+        return $this->render('post/new.html.twig', [
+            'title' => $title,
             'post' => $post,
             'form' => $form->createView(),
         ]);
@@ -117,9 +122,9 @@ class PostController extends AbstractController
     /**
      * @Security("is_granted('ROLE_USER')")
      * 
-     * @Route("post/{id}", name="post_delete", methods={"DELETE"})
+     * @Route("post/supprimer/{id}", name="post_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Post $post): Response
+    public function delete(Request $request, PostRepository $post): Response
     {
         if ($this->isCsrfTokenValid('delete' . $post->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();

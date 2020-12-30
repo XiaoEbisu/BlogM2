@@ -59,3 +59,12 @@ a:hover {
   color: rgb(183, 199, 241);
   font-size: 25px;
 }
+
+.block-small {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.btn-light {
+  background-color: cornflowerblue;
+}

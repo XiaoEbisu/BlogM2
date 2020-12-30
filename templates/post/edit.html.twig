@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Post{% endblock %}
+{% block title %}{{ title }} - Sếp péo's blog{% endblock %}
 
 {% block body %}
     <div class="col-md-8">
-    <h1>Edit Post</h1>
+    <h1>{{ title }}</h1>
 
     {{ include('post/_form.html.twig', {'button_label': 'Update'}) }}
         <div class="row">
