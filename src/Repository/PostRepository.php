@@ -35,7 +35,7 @@ class PostRepository extends ServiceEntityRepository
   public function getPaginatedPosts($page, $limit)
   {
     $query = $this->createQueryBuilder('p')
-      ->orderBy('p.published')
+      ->orderBy('p.published', 'DESC')
       ->setFirstResult(($page * $limit) - $limit)
       ->setMaxResults($limit);
     return $query->getQuery()->getResult();

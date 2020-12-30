@@ -1,3 +1,12 @@
+## Installer Symfony
+https://symfony.com/download
+
+## Installer Composer 
+https://getcomposer.org/download/ 
+ou
+https://getcomposer.org/Composer-Setup.exe
+
+
 ## Configuration de bdd
 .env
 APP_ENV=dev
@@ -22,12 +31,20 @@ or
 symfony console doctrine:migrations:generate
 ```
 
-## Mettre à jour la version migration
+## Créer ou mettre à jour la version de migration
 ```PHP
 php bin/console doctrine:migrations:diff
 or
 symfony console doctrine:migrations:diff
 ```
+
+## Supprimer une version de migration
+```PHP
+php bin/console doctrine:migrations:version --delete $version
+
+exemple : php bin/console doctrine:migrations:version --delete DoctrineMigrations\Version20201229214259  
+```
+
 
 ## Appliquer le migration
 ```PHP
@@ -44,16 +61,31 @@ php bin/console server:start
 ```
 Server démarrer sur 127.0.0.1:8000
 
-## Déployer projet
+## Installer Heroku pour déployer
+https://devcenter.heroku.com/articles/heroku-cli
+
+## Tutoriel pour déployer une application symfony vers Heroku
+https://devcenter.heroku.com/articles/deploying-symfony4
+
+## Init projet à déployer Déployer projet
 ```GIT
 git init
-heroku git:remote -a nom-projet
 git add .
 git commit -m "init projet"
-git push heroku master ou git push heroku HEAD:master 
+
+heroku create
+echo 'web: heroku-php-apache2 public/' > Procfile
+git add Procfile
+git commit -m "Heroku Procfile"
+heroku config:set APP_ENV=prod
+heroku config:set APP_SECRET=$(php -r 'echo bin2hex(random_bytes(16));')
+heroku git:remote -a nom-projet
+git push heroku master or git push heroku main
 ```
+##
 
 ## Liens vers site déployé
+heroku open
 https://nguyenkhang-tran-blog.herokuapp.com/
 :warning: Site en cours de dévéloppement.
 

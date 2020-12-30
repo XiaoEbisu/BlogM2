@@ -21,7 +21,7 @@ class PostController extends AbstractController
      * @Route("", defaults={"page"="1"})
      * @Route("/{page<\d+>?}", name="post_index", methods={"GET"})
      */
-    public function index(PostRepository $postRepository, $page): Response
+    public function index(PostRepository $postRepository, int $page): Response
     {
         //définir le nombre d'éléments par page
         $limit = 6;
