@@ -7,21 +7,33 @@
 
 {% block body %}
 	<div class="row">
-		<div class="col-md-9">
-			<h2>{{ title }}</h2>
-		</div>
+
 		{% if title == "Modifier l'article" %}
-			<div class="col-md-2 my-auto">
-				<a class="btn btn-light btn-sm" href="{{ path('post_delete', { ('id') : post.id }) }}">
-					<i class="far fa-trash-alt"></i>
-					Supprimer</a>
+			<div class="col-md-9">
+				<h2>{{ title }}</h2>
 			</div>
+			<div class="col-md-2 my-auto">
+				{{ include('post/_delete_form.html.twig') }}
+			</div>
+			<div class="col-md-1 my-auto">
+				<a class="btn btn-light btn-sm float-right" href="{{ path('post_index') }}">
+					<i class="fas fa-undo-alt"></i>
+					Retour</a>
+			</div>
+
+		{% else %}
+			<div class="col-md-11">
+				<h2>{{ title }}</h2>
+			</div>
+			
+			<div class="col-md-1 my-auto">
+				<a class="btn btn-light btn-sm float-right" href="{{ path('post_index') }}">
+					<i class="fas fa-undo-alt"></i>
+					Retour</a>
+			</div>
+
 		{% endif %}
-		<div class="col-md-1 my-auto">
-			<a class="btn btn-light btn-sm float-right" href="{{ path('post_index') }}">
-				<i class="fas fa-undo-alt"></i>
-				Retour</a>
-		</div>
+
 	</div>
 
 	<hr>
