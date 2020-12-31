@@ -73,9 +73,9 @@ class PostController extends AbstractController
     /**
      * @Route("post/{slug}", name="post_show", methods={"GET"})
      */
-    public function show(string $slug): Response
+    public function show(PostRepository $postRepository, string $slug): Response
     {
-        $post = $this->getDoctrine()->getRepository(Post::class)->findOneBy(['url_alias' => $slug]);
+        $post = $postRepository->findOneBy(['url_alias' => $slug]);
         if (!$post) {
             //return $this->render('exception/error404.html.twig');
             throw $this->createNotFoundException('Pas d\'article correspond à cette url.');
@@ -90,10 +90,11 @@ class PostController extends AbstractController
      * 
      * @Route("post/{slug}/edit", name="post_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, string $slug): Response
+    public function edit(PostRepository $postRepository, Request $request, string $slug): Response
     {
+        $post = $postRepository->findOneBy(['url_alias' => $slug]);
         $title = "Modifier l'article";
-        $post = $this->getDoctrine()->getRepository(Post::class)->findOneBy(['url_alias' => $slug]);
+
         if (!$post) {
             return $this->render('exception/error404.html.twig');
         }
