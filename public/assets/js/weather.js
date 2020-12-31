@@ -8,8 +8,8 @@ let loadingInfos = async () =>  {
     const ip = await fetch('https://api.ipify.org?format=json')
         .then(resultat => resultat.json())
         .then( json => json.ip);
-
-    const city = await fetch('https://api.ipstack.com/' + ip + '?access_key=e9d4fc7b84c4393503c49e451653d4dd&language=en')
+        
+    const city = await fetch(`https://freegeoip.app/json/${ip}`)
         .then(resultat => resultat.json())
         .then(json => json.city)
 
