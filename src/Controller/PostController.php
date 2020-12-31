@@ -94,7 +94,7 @@ class PostController extends AbstractController
     {
         $post = $postRepository->findOneBy(['url_alias' => $slug]);
         $title = "Modifier l'article";
-        
+
         if (!$post) {
             return $this->render('exception/error404.html.twig');
         }
@@ -124,8 +124,9 @@ class PostController extends AbstractController
      * 
      * @Route("post/supprimer/{id}", name="post_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, PostRepository $post): Response
-    {
+    public function delete(Request $request, Post $post): Response
+    {      
+
         if ($this->isCsrfTokenValid('delete' . $post->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($post);
