@@ -9,7 +9,7 @@ let loadingInfos = async () =>  {
         .then(resultat => resultat.json())
         .then( json => json.ip);
 
-    const city = await fetch('http://api.ipstack.com/' + ip + '?access_key=e9d4fc7b84c4393503c49e451653d4dd&language=en')
+    const city = await fetch('https://api.ipstack.com/' + ip + '?access_key=e9d4fc7b84c4393503c49e451653d4dd&language=en')
         .then(resultat => resultat.json())
         .then(json => json.city)
 
