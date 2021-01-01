@@ -6,6 +6,7 @@ use App\Repository\PostRepository;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PostRepository::class)
@@ -27,11 +28,15 @@ class Post
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank(message="Le titre ne doit pas être vide")
+     * @Assert\Length(min=5)
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=9999)
+     * @Assert\NotBlank(message="Le titre ne doit pas être vide")
+     * @Assert\Length(min=50)
      */
     private $content;
 

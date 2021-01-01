@@ -60,6 +60,8 @@ class PostController extends AbstractController
             $entityManager->persist($post);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Un article a été ajouté !');
+
             return $this->redirectToRoute('post_index');
         }
 
@@ -107,6 +109,8 @@ class PostController extends AbstractController
             //$post->setPublished(new \DateTime());
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'L\'article a été modifié !');
+
             return $this->redirectToRoute('post_show', [
                 'slug' => $post->getUrlAlias()
             ]);
@@ -130,6 +134,8 @@ class PostController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($post);
             $entityManager->flush();
+
+            $this->addFlash('notice', 'L\'article a été supprimé !');
         }
 
         return $this->redirectToRoute('post_index');
