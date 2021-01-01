@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class PostType extends AbstractType
 {
@@ -27,6 +28,12 @@ class PostType extends AbstractType
                     'rows' => 15 , 
                     'placeholder' => 'Ecrivez quelques choses . . .'
                 ]
+            ])
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Image (en *.jpg ou *.png)',
+                'required' => false,
+                'allow_delete' => true,
+                'image_uri' => true,
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Publier',

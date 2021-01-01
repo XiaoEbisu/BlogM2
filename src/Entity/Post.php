@@ -32,6 +32,7 @@ class Post
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\Unique
      * @Assert\NotBlank(message="Le titre ne doit pas être vide")
      * @Assert\Length(min=5)
      */
@@ -60,7 +61,7 @@ class Post
 
     /**
      * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $updatedAt;
 
