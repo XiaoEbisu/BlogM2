@@ -12,7 +12,7 @@
 		</title>
 
 		<!-- Bootstrap core CSS -->
-		<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
 		<link href="{{ asset('assets/css/base.css') }}" rel="stylesheet">
 
@@ -46,90 +46,22 @@
 		<main>
 
 			<header>
-
+				{{ include('_nav.html.twig') }}
 				<!-- Navigation -->
-				<div class="collapse bg-dark nav-style" id="navbarHeader">
-					<div class="container">
-						<div class="row">
-							<div class="col-sm-8 py-4">
-								<h4 class="text-white">À propos</h4>
-								<p class="text-muted">
-									Notre projet blog symfony de MASTER 2.<br/>
-									NGUYEN Huu-Khang<br/>
-									TRAN Thi Tra-My
-								</p>
-							</div>
-
-							{% if is_granted("ROLE_USER") == false %}
-								<div class="col-sm-2 offset-md-2 py-4">
-									<h4 class="text-white">
-										<a class="text-white" href="{{ path("app_login") }}">Connexion</a>
-									</h4>
-								</div>
-							{% else %}
-								<div class="col-sm-2 py-4">
-									<h4 class="text-white">
-										<a href="{{ path('post_new') }}">Ajouter un article</a>
-									</h4>
-									<p class="text-muted">
-										Voulez-vous écrire quelques choses aujourd'hui ?
-									</p>
-								</div>
-								<div class="col-sm-2 py-4">
-									<h4 class="text-white">
-										<a href="{{ path("app_logout") }}">Déconnexion</a>
-									</h4>
-								</div>
-							{% endif %}
-
-						</div>
-					</div>
-				</div>
-				<div class="navbar navbar-dark bg-dark shadow-sm">
-					<div class="container">
-						<a href="{{ path("post_index", { 'page' : 1}) }}" class="navbar-brand d-flex align-items-center">
-							<img src="{{ asset('assets/img/blog.png') }}" alt="my blog">&nbsp;
-							<strong>My Blog</strong>
-						</a>
-						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-					</div>
-				</div>
+				
 			</header>
 
 			<!-- END OF NAVIGATION -->
 
 
 			<div class="container container-custom mt-4"> 
-				{% for label, messages in app.flashes %}
-					{% for message in messages %}
-						<div class="alert alert-{{label}}">
-							{{ message }}
-						</div>
-					{% endfor %}
-				{% endfor %}
-				{% block body %}
-					
-				{% endblock %}
+				{{ include('_flash.html.twig') }}
+				{% block body %}{% endblock %}
 			</div>
 
 
 				<!-- FOOTER -->
-				<footer class="text-muted py-5 footer-style">
-					<div class="container">
-
-						<p class="float-end mb-1">
-							<a href="#">
-								<i class="fas fa-angle-double-up fa-lg"></i>
-							</a>
-						</p>
-						<p class="mb-1">
-							Sếp péo's Blog
-							<i class="fas fa-paw"></i>
-						</p>
-					</div>
-				</footer>
+				{{ include('_footer.html.twig') }}
 
 			</main>
 

@@ -16,13 +16,13 @@ class PostType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Titre', 
+                'label' => 'Titre*', 
                 'attr' => [
                     'placeholder' => "Titre de l'article"
                 ]
             ])
             ->add('content', TextareaType::class, [
-                'label' => 'Contenu',
+                'label' => 'Description*',
                 'attr' => [
                     'rows' => 15 , 
                     'placeholder' => 'Ecrivez quelques choses . . .'

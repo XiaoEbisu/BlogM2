@@ -1,0 +1,48 @@
+<div class="collapse bg-dark nav-style" id="navbarHeader">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-8 py-4">
+								<h4 class="text-white">À propos</h4>
+								<p class="text-muted">
+									Notre projet blog symfony de MASTER 2.<br/>
+									NGUYEN Huu-Khang<br/>
+									TRAN Thi Tra-My
+								</p>
+							</div>
+
+							{% if is_granted("ROLE_USER") == false %}
+								<div class="col-sm-2 offset-md-2 py-4">
+									<h4 class="text-white">
+										<a class="text-white" href="{{ path("app_login") }}">Connexion</a>
+									</h4>
+								</div>
+							{% else %}
+								<div class="col-sm-2 py-4">
+									<h4 class="text-white">
+										<a href="{{ path('post_new') }}">Ajouter un article</a>
+									</h4>
+									<p class="text-muted">
+										Voulez-vous écrire quelques choses aujourd'hui ?
+									</p>
+								</div>
+								<div class="col-sm-2 py-4">
+									<h4 class="text-white">
+										<a href="{{ path("app_logout") }}">Déconnexion</a>
+									</h4>
+								</div>
+							{% endif %}
+
+						</div>
+					</div>
+				</div>
+				<div class="navbar navbar-dark bg-dark shadow-sm">
+					<div class="container">
+						<a href="{{ path("post_index", { 'page' : 1}) }}" class="navbar-brand d-flex align-items-center">
+							<img src="{{ asset('assets/img/blog.png') }}" alt="my blog">&nbsp;
+							<strong>My Blog</strong>
+						</a>
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+					</div>
+				</div>

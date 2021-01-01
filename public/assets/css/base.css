@@ -77,3 +77,7 @@ a:hover {
 .btn-light {
   background-color: cornflowerblue;
 }
+
+.badge-danger {
+  background-color: red;
+}
