@@ -34,6 +34,7 @@ class PostType extends AbstractType
                 'required' => false,
                 'allow_delete' => true,
                 'image_uri' => true,
+                'imagine_pattern' => 'squared_thumbnail_small'
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Publier',

@@ -56,9 +56,13 @@
 					{% for post in posts %}
 						<div class="col">
 							<div class="card shadow-sm">
+								{% if post.illustration %}
+									<img src="{{vich_uploader_asset(post) | imagine_filter('squared_thumbnail_medium')}}" alt="{{ post.title}}" />
+								{% else %}
 								<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveaspectratio="xMidYMid slice" focusable="false">
 									<title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
 								</svg>
+								{% endif %}
 
 								<div class="card-body ">
 									<a href="{{ path('post_show', {('slug') : post.urlAlias} )}}">

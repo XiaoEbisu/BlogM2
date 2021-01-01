@@ -32,7 +32,6 @@ class Post
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\Unique
      * @Assert\NotBlank(message="Le titre ne doit pas être vide")
      * @Assert\Length(min=5)
      */
