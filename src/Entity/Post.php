@@ -7,10 +7,13 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=PostRepository::class)
  * @ORM\Entity
+ * @Vich\Uploadable
  * @UniqueEntity(
  *      fields={"title"},
  *      message="This title is already used."
@@ -19,6 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Post
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -53,6 +57,21 @@ class Post
      * @ORM\Column(type="datetime")
      */
     private $published;
+
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * 
+     * @Vich\UploadableField(mapping="blog_image", fileNameProperty="illustration")
+     * 
+     * @var File|null
+     */
+    private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=255, nullable = true)
@@ -112,15 +131,53 @@ class Post
         return $this;
     }
 
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * 
+     */
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
     public function getIllustration(): ?string
     {
         return $this->illustration;
     }
 
-    public function setIllustration(string $illustration): self
+    public function setIllustration(?string $illustration): self
     {
         $this->illustration = $illustration;
 
         return $this;
+    }
+
+    /**
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+     */
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->setUpdatedAt(new \DateTimeImmutable());
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 }
