@@ -14,6 +14,10 @@
     background-image: url('../img/snowy.jpg');
 }
 
+.mist{
+    background-image: url('../img/fog.jpg');
+}
+
 i.wi {
     font-size: 5em;
     line-height: 3em;

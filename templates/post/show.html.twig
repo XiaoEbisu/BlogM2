@@ -71,6 +71,14 @@
                             <a href="{{ path('post_show', {('slug') : featuredPost.urlAlias}) }}">
                             {{ featuredPost.title }}
                             </a>
+                            <div class="side-content-date">
+                                <p>
+                                    <small>
+                                        Créé le : {{ featuredPost.published | date("d/m/Y", "Europe/Paris") }} | 
+                                        mis à jour le : {{ featuredPost.updatedAt | date("d/m/Y", "Europe/Paris")}}
+                                    </small>
+                                </p>
+                            </div>
                         </li>
                         {% endfor %}
                             
