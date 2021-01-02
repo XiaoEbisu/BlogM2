@@ -7,7 +7,7 @@ Nous n'avons pas pu implémenter un illustration pour chaque post quand on charg
 
 Nous avons intégré l'api pour récupérer les [6 derniers blogs](https://nguyenkhang-tran-blog.herokuapp.com/api/posts) ainsi qu'[un météo](https://nguyenkhang-tran-blog.herokuapp.com/api/weather) qui utilise [l'api du site météo](https://openweathermap.org/api).
 
-Concernant les blogs, nous avons un [page d'accueil](https://nguyenkhang-tran-blog.herokuapp.com/) qui pourrait afficher tous les 6 articles. Les utilisateurs anonymes peuvent voir la contenue d'[un article](https://nguyenkhang-tran-blog.herokuapp.com/post/boeuf-luc-lac) en cliquant dessus. Le titre de chaque article doit être unique car il serait généré comme un slug pour accéder à l'article. Pour créer, éditer ou supprimer un blog, l'utilisateur doit être connecté. Nous n'avons pas ajouté l'auteur par l'article car il s'agit un blog personnel. 
+Concernant les blogs, nous avons un [page d'accueil](https://nguyenkhang-tran-blog.herokuapp.com/) qui pourrait afficher tous les 6 articles. Les utilisateurs anonymes peuvent voir la contenue d'[un article](https://nguyenkhang-tran-blog.herokuapp.com/post/boeuf-luc-lac) en cliquant dessus. Le titre de chaque article doit être unique et supérieur à 5 charactères car il serait généré comme un slug pour accéder à l'article. Pour créer, éditer ou supprimer un blog, l'utilisateur doit être connecté. Nous n'avons pas ajouté l'auteur par l'article car il s'agit un blog personnel. 
 
 ## Installer Symfony
 https://symfony.com/download
