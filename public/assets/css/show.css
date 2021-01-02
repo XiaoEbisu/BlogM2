@@ -34,3 +34,47 @@
     margin-right: auto;
     width: 50%;
 }
+
+.side {
+    margin: 10px 0 10px 0;
+}
+
+.side h3 {
+    font-size: 16px;
+    font-weight: 600;
+    padding-bottom: 8px;
+    width: auto;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.h3, h3 {
+    font-size: 1.75rem;
+}
+
+.side ul{
+    margin: 0;
+    padding: 0;
+}
+
+.side li {
+    list-style: none;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.63;
+    letter-spacing: normal;
+    color: #2f2f2f;
+    padding: 15px 0!important;
+    margin: 0!important;
+    border-bottom: solid 1px #dae0e7;
+    padding-bottom: 20px;
+    
+}
+
+.side a {
+    color: #2f2f2f;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+}

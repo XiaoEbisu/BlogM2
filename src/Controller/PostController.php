@@ -76,7 +76,13 @@ class PostController extends AbstractController
      * @Route("post/{slug}", name="post_show", methods={"GET"})
      */
     public function show(PostRepository $postRepository, string $slug): Response
-    {
+    {   
+        //last 5 posts
+        $page = 1; 
+        $limit = 5;
+
+        $featuredPosts = $postRepository->getPaginatedPosts($page, $limit);
+
         $post = $postRepository->findOneBy(['url_alias' => $slug]);
         if (!$post) {
             //return $this->render('exception/error404.html.twig');
@@ -84,6 +90,7 @@ class PostController extends AbstractController
         }
         return $this->render('post/show.html.twig', [
             'post' => $post,
+            'featuredPosts' => $featuredPosts,
         ]);
     }
 
