@@ -1,3 +1,10 @@
+## Participants 
+NGUYEN Huu Khang 
+TRAN Thi Tra My
+
+## Commentaires
+Nous n'avons pas pu implémenter un illustration pour chaque post quand on charge le site déployé car heroku n'accepte pas les fichiers statiques. Il fallait implémenter le service tier pour que l'on puisse charger les images en ligne. 
+
 ## Installer Symfony
 https://symfony.com/download
 
