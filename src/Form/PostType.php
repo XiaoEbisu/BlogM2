@@ -33,7 +33,7 @@ class PostType extends AbstractType
                 'label' => 'Image (en *.jpg ou *.png)',
                 'required' => false,
                 'allow_delete' => true,
-                'image_uri' => true,
+                'download_uri' => false,
                 'imagine_pattern' => 'squared_thumbnail_small'
             ])
             ->add('submit', SubmitType::class, [
