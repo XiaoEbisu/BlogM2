@@ -7,7 +7,7 @@ liip_imagine:
         squared_thumbnail_large:
             filters:
                 relative_resize:
-                    widen: 990
+                    widen: 500
 
         squared_thumbnail_medium:
             filters:
