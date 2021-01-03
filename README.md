@@ -2,6 +2,10 @@
 NGUYEN Huu Khang  
 TRAN Thi Tra My  
 
+## Compte User pour CRUD
+identifiant : admin@blog.com
+mdp : 123456
+
 ## Commentaires
 Nous n'avons pas pu implémenter un illustration pour chaque post quand on charge le site déployé car heroku n'accepte pas les fichiers statiques. Il fallait implémenter le [service tier](https://devcenter.heroku.com/articles/s3) pour que l'on puisse charger les images en ligne. Sinon l'option image est possible en local. Les bundles utilisés pour cet option sont [VichUploaderBundle](https://github.com/dustin10/VichUploaderBundle) et [LiipImagineBundle](https://github.com/liip/LiipImagineBundle).
 
