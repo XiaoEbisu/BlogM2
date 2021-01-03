@@ -142,7 +142,7 @@ class PostController extends AbstractController
             $entityManager->remove($post);
             $entityManager->flush();
 
-            $this->addFlash('notice', 'L\'article a été supprimé !');
+            $this->addFlash('warning', 'L\'article a été supprimé !');
         }
 
         return $this->redirectToRoute('post_index');
