@@ -24,8 +24,14 @@ APP_ENV=dev
 DATABASE_URL=mysql://db_user:db_password@host:port/db_name?serverVersion=*.*
 
 ## Initialiser projet 
+```GIT
+git clone https://github.com/KhanggNguyen/BlogM2.git
+```
+
 ```PHP
-php bin/console app:init
+composer update
+or
+composer install 
 ```
 
 ## Générer un controller
@@ -80,6 +86,8 @@ https://devcenter.heroku.com/articles/deploying-symfony4
 
 ## Init projet à déployer Déployer projet
 ```GIT
+composer req apache-pack avec option recipe = yes
+
 git init
 git add .
 git commit -m "init projet"
