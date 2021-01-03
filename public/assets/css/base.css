@@ -59,6 +59,11 @@ a {
   color: black;
 }
 
+.nav-style a:hover {
+  color: pink;
+  text-decoration: none;
+}
+
 a:hover {
   color: pink;
   text-decoration: none;
