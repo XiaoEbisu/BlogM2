@@ -7,11 +7,11 @@ identifiant : admin@blog.com
 mdp : 123456
 
 ## Commentaires
-Nous n'avons pas pu implémenter un illustration pour chaque post quand on charge le site déployé car heroku n'accepte pas les fichiers statiques. Il fallait implémenter le [service tier](https://devcenter.heroku.com/articles/s3) pour que l'on puisse charger les images en ligne. Sinon l'option image est possible en local. Les bundles utilisés pour cet option sont [VichUploaderBundle](https://github.com/dustin10/VichUploaderBundle) et [LiipImagineBundle](https://github.com/liip/LiipImagineBundle).
+Nous n'avons pas pu implémenter une illustration pour chaque article quand on charge le site déployé car heroku n'accepte pas les fichiers statiques. Il fallait implémenter le [service tier](https://devcenter.heroku.com/articles/s3) pour que l'on puisse charger les images en ligne. Sinon l'option charger une image est possible en local. Les bundles utilisés pour cet option sont [VichUploaderBundle](https://github.com/dustin10/VichUploaderBundle) et [LiipImagineBundle](https://github.com/liip/LiipImagineBundle).
 
 Nous avons intégré l'api pour récupérer les [6 derniers blogs](https://nguyenkhang-tran-blog.herokuapp.com/api/posts) ainsi qu'[un météo](https://nguyenkhang-tran-blog.herokuapp.com/api/weather) qui utilise [l'api du site météo](https://openweathermap.org/api).
 
-Concernant les blogs, nous avons un [page d'accueil](https://nguyenkhang-tran-blog.herokuapp.com/) qui pourrait afficher tous les 6 articles. Les utilisateurs anonymes peuvent voir la contenue d'[un article](https://nguyenkhang-tran-blog.herokuapp.com/post/boeuf-luc-lac) en cliquant dessus. Le titre de chaque article doit être unique et supérieur à 5 charactères car il serait généré comme un slug pour accéder à l'article. Pour créer, éditer ou supprimer un blog, l'utilisateur doit être connecté. Nous n'avons pas ajouté l'auteur par l'article car il s'agit un blog personnel. 
+Concernant les blogs, nous avons un [page d'accueil](https://nguyenkhang-tran-blog.herokuapp.com/) qui pourrait afficher tous les 6 articles. Les utilisateurs anonymes peuvent voir la contenue d'[un article](https://nguyenkhang-tran-blog.herokuapp.com/post/boeuf-luc-lac) en cliquant dessus. Le titre de chaque article doit être unique et supérieur à 5 charactères car il serait généré comme un slug pour accéder à l'article. Pour créer, éditer ou supprimer un blog, l'utilisateur doit être connecté. Nous n'avons pas ajouté l'auteur par l'article car il s'agit un blog personnel. Les utilisateurs connectés peuvent créer/éditer/supprimer les articles du site.
 
 ## Installer Symfony
 https://symfony.com/download
