@@ -7,8 +7,26 @@
 {% endblock %}
 
 {% block body %}
-    <div class="col-md-2">
-        <a class="btn btn-primary" href="{{ path('post_index') }}" role="button"> <i class="fas fa-arrow-left"></i> Retourner </a>
+
+    <div class="row">
+        <div class="col-md-2">
+            <a class="btn btn-light" href="{{ path('post_index') }}" role="button"> <i class="fas fa-arrow-left"></i> Retourner </a>
+        </div>
+                
+                
+        {% if is_granted("ROLE_USER") == true %}
+        <div class="offset-md-6 col-md-4 ">
+            <div class="row">
+                <div class="offset-md-3 col-md-4 show-button">
+                    <a class="btn btn-light" href="{{ path('post_edit', { ('slug') : post.urlAlias}) }}" role="button"><i class="fas fa-edit"></i> Editer </a>
+                </div>
+                <div class="col-md-5">
+                    {{ include('post/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+        
+        {% endif %}
     </div>
     <div class="row mb-4">
         <!-- Blog Entries Column -->
@@ -47,18 +65,7 @@
 
 
         
-            <div class="row">
-                
-                
-                {% if is_granted("ROLE_USER") == true %}
-                    <div class="col-md-2">
-                        <a class="btn btn-primary" href="{{ path('post_edit', { ('slug') : post.urlAlias}) }}" role="button"><i class="fas fa-edit"></i> Editer </a>
-                    </div>
-                    <div class="col-md-3">
-                        {{ include('post/_delete_form.html.twig') }}
-                    </div>
-                {% endif %}
-            </div>
+            
         </div>
 
         <div class="col-md-3 px-5 my-5 ">
