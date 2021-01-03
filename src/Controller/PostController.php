@@ -105,7 +105,7 @@ class PostController extends AbstractController
         $title = "Modifier l'article";
 
         if (!$post) {
-            return $this->render('exception/error404.html.twig');
+            return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
         }
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);

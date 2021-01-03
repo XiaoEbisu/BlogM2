@@ -31,6 +31,13 @@ main {
   color: white;
 }
 
+.title-too-long{
+  width: 15em; /* the element needs a fixed width (in px, em, %, etc) */
+  overflow: hidden; /* make sure it hides the content that overflows */
+  white-space: nowrap; /* don't break the line */
+  text-overflow: ellipsis; /* give the beautiful '...' effect */
+}
+
 .content-too-long {
   width: 20em; /* the element needs a fixed width (in px, em, %, etc) */
   overflow: hidden; /* make sure it hides the content that overflows */
