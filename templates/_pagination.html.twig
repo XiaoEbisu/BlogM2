@@ -11,7 +11,7 @@
 			</li>
 			{% set pages = ((total / limit)|round(0, 'ceil')) %}
 			{% for item in 1..pages %}
-				<li class="page-item">
+				<li class="page-item {{ item == page ? 'active' }}">
 					<a class="page-link" href="{{ path("post_index", { 'page' : item }) }}">{{item}}</a>
 				</li>
 			{% endfor %}

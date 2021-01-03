@@ -94,3 +94,21 @@ a:hover {
 .badge-danger {
   background-color: red;
 }
+
+.page-item.active .page-link{
+  border-color: white;
+}
+
+.page-item a{
+  color: black;
+}
+
+.pagination .active a{
+  background-color: pink !important;
+  border: 1px solid white;
+
+}
+
+.pagination .active a.page-link{
+  color: black;
+}
